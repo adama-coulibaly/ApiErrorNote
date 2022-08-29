@@ -11,4 +11,7 @@ public interface UserService {
     User modifier(Long id_user, User user);
     String supprimer(Long id_user);
     List<User> lire();
+
+    boolean seConnecter(String pseudo, String password);
+
 }

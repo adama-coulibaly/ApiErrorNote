@@ -41,4 +41,15 @@ public class UserServiceImpl implements UserService {
     public List<User> lire() {
         return userRepository.findAll();
     }
+
+    @Override
+    public boolean seConnecter(String pseudo, String password) {
+     /*   if(userRepository.findByPseudo(pseudo) ){
+
+            return true;
+        }
+
+      */
+        return false;
+    }
 }
