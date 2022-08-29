@@ -19,7 +19,7 @@ public class SolutionController {
         return solutionService.ajouter(solution);
     }
 
-    @PutMapping("/modifier")
+    @PutMapping("/modifier/{id_solution}")
     public Solution modifer(@PathVariable Long id_solution,@RequestBody Solution solution){
         return solutionService.modifier(id_solution,solution);
     }

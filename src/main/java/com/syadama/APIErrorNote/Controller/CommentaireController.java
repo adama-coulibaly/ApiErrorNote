@@ -21,7 +21,7 @@ public class CommentaireController {
         return commentaireService.ajouter(commentaire);
     }
 
-    @PutMapping("/modifier")
+    @PutMapping("/modifier/{id_solution}")
     public Commentaire modifer(@PathVariable Long id_commentaire,@RequestBody Commentaire commentaire){
         return commentaireService.modifier(id_commentaire,commentaire);
     }

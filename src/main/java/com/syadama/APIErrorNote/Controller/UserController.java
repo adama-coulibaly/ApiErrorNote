@@ -20,7 +20,7 @@ public class UserController {
         return userService.ajouter(user);
     }
 
-    @PutMapping("/modifier")
+    @PutMapping("/modifier/{id_user}")
     public User modifer(@PathVariable Long id_user,@RequestBody User user){
         return userService.modifier(id_user,user);
     }
