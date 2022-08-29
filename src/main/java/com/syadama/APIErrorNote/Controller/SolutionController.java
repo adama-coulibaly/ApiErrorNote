@@ -24,7 +24,7 @@ public class SolutionController {
         return solutionService.modifier(id_solution,solution);
     }
 
-    @DeleteMapping("/supprimer")
+    @DeleteMapping("/supprimer/{id_solution}")
     public String supprimer(@PathVariable Long id_solution){
         return solutionService.supprimer(id_solution);
     }

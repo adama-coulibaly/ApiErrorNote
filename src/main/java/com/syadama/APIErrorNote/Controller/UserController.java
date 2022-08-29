@@ -25,7 +25,7 @@ public class UserController {
         return userService.modifier(id_user,user);
     }
 
-    @DeleteMapping("/supprimer")
+    @DeleteMapping("/supprimer/{id_user}")
     public String supprimer(@PathVariable Long id_user){
         return userService.supprimer(id_user);
     }

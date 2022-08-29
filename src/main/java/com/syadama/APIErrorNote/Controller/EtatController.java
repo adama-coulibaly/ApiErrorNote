@@ -21,7 +21,7 @@ public class EtatController {
         return etatService.ajouter(etat);
     }
 
-    @PutMapping("/modifier")
+    @PutMapping("/modifier/{id_etat}")
     public Etat modifer(@PathVariable Long id_etat, @RequestBody Etat etat){
         return etatService.modifier(id_etat,etat);
     }

@@ -26,7 +26,7 @@ public class CommentaireController {
         return commentaireService.modifier(id_commentaire,commentaire);
     }
 
-    @DeleteMapping("/supprimer")
+    @DeleteMapping("/supprimer/{id_commentaire}")
     public String supprimer(@PathVariable Long id_commentaire){
         return commentaireService.supprimer(id_commentaire);
     }

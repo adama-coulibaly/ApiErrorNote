@@ -20,7 +20,7 @@ public class ProblemeController {
         return problemeService.ajouter(probleme);
     }
 
-    @PutMapping("/Modifieir")
+    @PutMapping("/Modifieir/id_probleme")
     public Probleme modifier(@PathVariable Long id_probleme, @RequestBody Probleme probleme){
         return problemeService.modifier(id_probleme,probleme);
     }
