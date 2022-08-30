@@ -5,7 +5,6 @@ import com.syadama.APIErrorNote.Repository.EtatRepository;
 import com.syadama.APIErrorNote.Service.EtatService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

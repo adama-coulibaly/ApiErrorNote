@@ -1,7 +1,6 @@
 package com.syadama.APIErrorNote.Service;
 
 import com.syadama.APIErrorNote.Model.Commentaire;
-
 import java.util.List;
 
 public interface CommentaireService {
