@@ -1,9 +1,12 @@
 package com.syadama.APIErrorNote.ServiceImplementation;
 
+import com.syadama.APIErrorNote.Model.Probleme;
 import com.syadama.APIErrorNote.Model.Solution;
 import com.syadama.APIErrorNote.Repository.SolutionRepository;
+import com.syadama.APIErrorNote.Service.ProblemeService;
 import com.syadama.APIErrorNote.Service.SolutionService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,9 +15,18 @@ import java.util.List;
 @AllArgsConstructor
 public class SolutionServiceImpl implements SolutionService {
     private final SolutionRepository solutionRepository;
+    @Autowired
+    ProblemeService problemeService;
 
     @Override
     public Solution ajouter(Solution solution) {
+        /* Probleme probleme = problemeService.trouverProblemeParTitre(solution.getProbleme().getTitre());
+        probleme.getId_probleme();
+        solution.getProbleme().setId_probleme(probleme.getId_probleme());
+
+        System.out.println("********************************************"+probleme.getId_probleme());
+
+         */
         return solutionRepository.save(solution);
     }
 
@@ -39,5 +51,10 @@ public class SolutionServiceImpl implements SolutionService {
     @Override
     public List<Solution> lire() {
         return solutionRepository.findAll();
+    }
+
+    @Override
+    public Solution trouverParProbleme(Probleme probleme) {
+        return solutionRepository.findByProbleme(probleme);
     }
 }

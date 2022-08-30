@@ -1,14 +1,18 @@
 package com.syadama.APIErrorNote.Model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-@Data
-@Entity
 
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Etat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
