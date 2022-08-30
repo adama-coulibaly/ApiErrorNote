@@ -6,6 +6,7 @@ import com.syadama.APIErrorNote.Model.Solution;
 public interface ProfilService {
 
     Profil ajouter(Profil profil);
+   /* Profil trouverParLibelle(String libelle); */
 
 
 }

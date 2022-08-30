@@ -18,6 +18,8 @@ public class User {
     private String pseudo;
     private String password;
 
+    private String email;
+
     @ManyToOne
     @JoinColumn(name = "profil_id_profil")
     private Profil profil;

@@ -10,4 +10,6 @@ public interface EtatService {
     Etat ajouter(Etat etat);
     Etat modifier(Long id_etat,  Etat etat);
     List<Etat> lire();
+   // Etat retrouverEtatParStatus(String status);
+
 }

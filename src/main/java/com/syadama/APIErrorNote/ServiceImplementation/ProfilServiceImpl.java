@@ -15,4 +15,5 @@ public class ProfilServiceImpl implements ProfilService {
     public Profil ajouter(Profil profil) {
         return profilRepository.save(profil);
     }
+
 }

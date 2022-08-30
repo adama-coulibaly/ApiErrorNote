@@ -1,9 +1,14 @@
 package com.syadama.APIErrorNote.ServiceImplementation;
 
+import com.syadama.APIErrorNote.Model.Etat;
 import com.syadama.APIErrorNote.Model.Probleme;
+import com.syadama.APIErrorNote.Model.User;
+import com.syadama.APIErrorNote.Repository.EtatRepository;
 import com.syadama.APIErrorNote.Repository.ProblemeRepository;
+import com.syadama.APIErrorNote.Repository.UserRepository;
 import com.syadama.APIErrorNote.Service.ProblemeService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,10 +17,34 @@ import java.util.List;
 @AllArgsConstructor
 public class ProblemeServiceImpl implements ProblemeService {
 
+    @Autowired
     private final ProblemeRepository problemeRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private EtatRepository etatRepository;
     @Override
-    public Probleme ajouter(Probleme probleme) {
-        return problemeRepository.save(probleme);
+    public Probleme ajouter(Probleme probleme, String email) {
+        if (userRepository.findByEmail(email) != null){
+
+            Etat etat = new Etat();
+
+            User user = userRepository.findByEmail(email);
+            etat.setId_etat(1L);
+            probleme.setEtat(etat);
+
+            probleme.getUser().setId_user(user.getId_user());
+
+            return problemeRepository.save(probleme);
+        }
+        else {
+                return null;
+        }
+      }
+
+    @Override
+    public Probleme trouverProblemeParTitre(String titre) {
+        return problemeRepository.findByTitre(titre);
     }
 
     @Override

@@ -10,15 +10,13 @@ import java.util.List;
 public class Solution {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id_solution;
+
     private String ressource;
     private String temps_consacre;
     private String methodologie_adopte;
 
-    @OneToOne(mappedBy = "solution")
+    @OneToOne
     private Probleme probleme;
-
-
 
 }

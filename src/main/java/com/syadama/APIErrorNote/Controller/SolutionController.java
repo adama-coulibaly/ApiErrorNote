@@ -1,7 +1,13 @@
 package com.syadama.APIErrorNote.Controller;
 
+import com.syadama.APIErrorNote.Model.Probleme;
+import com.syadama.APIErrorNote.Model.Profil;
 import com.syadama.APIErrorNote.Model.Solution;
+import com.syadama.APIErrorNote.Model.User;
+import com.syadama.APIErrorNote.Repository.UserRepository;
+import com.syadama.APIErrorNote.Service.ProblemeService;
 import com.syadama.APIErrorNote.Service.SolutionService;
+import com.syadama.APIErrorNote.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,10 +19,48 @@ public class SolutionController {
 
     @Autowired
     private SolutionService solutionService;
+    @Autowired
+    private ProblemeService problemeService;
+    @Autowired
+    UserRepository userRepository;
 
-    @PostMapping("/ajouter")
-    public Solution Ajouter(@RequestBody Solution solution){
-        return solutionService.ajouter(solution);
+    @PostMapping("/ajouter/{email}/{titre}")
+    public String Ajouter(@RequestBody Solution solution,@PathVariable String email, @PathVariable String titre){
+
+        User user = userRepository.findByEmail(email);
+        Probleme probleme = problemeService.trouverProblemeParTitre(titre);
+
+        System.out.println("user: " + user + "problem: " + probleme.getTitre());
+
+        if (probleme != null){
+           // probleme.getUser().setId_user(user.getId_user());
+
+            System.out.println("user poster" + user);
+
+            Long IdProb = probleme.getId_probleme();
+            Long IdUser = probleme.getUser().getId_user();
+            Long IdUserPost = user.getId_user();
+
+            System.out.println("Je suis id de Posteur "+IdUserPost);
+            System.out.println("Je suis id de Solution "+IdUser);
+            System.out.println("id probleme " + IdProb);
+
+            if (solutionService.trouverParProbleme(probleme) == null){
+                if (IdUserPost != IdUser){
+                    return "Ce probleme n'est pas a vous !";
+                }else {
+                    solution.setProbleme(probleme);
+                    solutionService.ajouter(solution);
+                    return "Solutionné";
+                }
+            }
+            else {
+                return "Ce probleme a été deja solutionné";
+            }
+
+        }else {
+            return "ce probleme n'existe pas";
+        }
     }
 
     @PutMapping("/modifier/{id_solution}")
