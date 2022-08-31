@@ -53,7 +53,7 @@ public class ProblemeController {
     }
 
 
-    @GetMapping("/Recherche")
+    @GetMapping("/recherche/{motCle}")
     public Object rechercheMotcle(@PathVariable String motCle){
         return problemeService.RechercheParMotCle(motCle);
     }

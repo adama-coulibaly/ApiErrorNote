@@ -1,5 +1,6 @@
 package com.syadama.APIErrorNote.Service;
 
+import com.syadama.APIErrorNote.Model.Commentaire;
 import com.syadama.APIErrorNote.Model.Probleme;
 import com.syadama.APIErrorNote.Model.Solution;
 import org.springframework.stereotype.Service;
@@ -15,4 +16,6 @@ public interface SolutionService {
     List<Solution> lire();
 
     Solution trouverParProbleme(Probleme probleme);
-}
+
+
+   }

@@ -13,6 +13,7 @@ public class Solution {
     private Long id_solution;
 
     private String ressource;
+    private String titre_solution;
     private String temps_consacre;
     private String methodologie_adopte;
 
