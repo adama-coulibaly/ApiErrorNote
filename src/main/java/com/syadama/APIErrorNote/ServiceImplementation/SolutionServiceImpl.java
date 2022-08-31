@@ -1,7 +1,9 @@
 package com.syadama.APIErrorNote.ServiceImplementation;
 
+import com.syadama.APIErrorNote.Model.Commentaire;
 import com.syadama.APIErrorNote.Model.Probleme;
 import com.syadama.APIErrorNote.Model.Solution;
+import com.syadama.APIErrorNote.Repository.CommentaireRepository;
 import com.syadama.APIErrorNote.Repository.SolutionRepository;
 import com.syadama.APIErrorNote.Service.ProblemeService;
 import com.syadama.APIErrorNote.Service.SolutionService;
@@ -18,16 +20,12 @@ public class SolutionServiceImpl implements SolutionService {
     @Autowired
     ProblemeService problemeService;
 
+
+
+
     @Override
     public Solution ajouter(Solution solution) {
-        /* Probleme probleme = problemeService.trouverProblemeParTitre(solution.getProbleme().getTitre());
-        probleme.getId_probleme();
-        solution.getProbleme().setId_probleme(probleme.getId_probleme());
-
-        System.out.println("********************************************"+probleme.getId_probleme());
-
-         */
-        return solutionRepository.save(solution);
+              return solutionRepository.save(solution);
     }
 
     @Override
@@ -57,4 +55,6 @@ public class SolutionServiceImpl implements SolutionService {
     public Solution trouverParProbleme(Probleme probleme) {
         return solutionRepository.findByProbleme(probleme);
     }
+
+
 }

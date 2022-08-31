@@ -73,7 +73,7 @@ public class ProblemeServiceImpl implements ProblemeService {
     public Object RechercheParMotCle(String motcle) {
 
         if (motcle !=null){
-            List<Probleme> retrouve = problemeRepository.RechercheParMotCle(motcle);
+            List<Probleme> retrouve = problemeRepository.findAll(motcle);
             System.out.println(retrouve);
             if (retrouve.size() != 0) {
                 return retrouve;

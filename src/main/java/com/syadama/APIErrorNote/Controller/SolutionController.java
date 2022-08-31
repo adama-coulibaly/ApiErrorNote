@@ -1,9 +1,6 @@
 package com.syadama.APIErrorNote.Controller;
 
-import com.syadama.APIErrorNote.Model.Probleme;
-import com.syadama.APIErrorNote.Model.Profil;
-import com.syadama.APIErrorNote.Model.Solution;
-import com.syadama.APIErrorNote.Model.User;
+import com.syadama.APIErrorNote.Model.*;
 import com.syadama.APIErrorNote.Repository.UserRepository;
 import com.syadama.APIErrorNote.Service.ProblemeService;
 import com.syadama.APIErrorNote.Service.SolutionService;
@@ -24,26 +21,19 @@ public class SolutionController {
     @Autowired
     UserRepository userRepository;
 
+
     @PostMapping("/ajouter/{email}/{titre}")
     public String Ajouter(@RequestBody Solution solution,@PathVariable String email, @PathVariable String titre){
 
         User user = userRepository.findByEmail(email);
         Probleme probleme = problemeService.trouverProblemeParTitre(titre);
 
-        System.out.println("user: " + user + "problem: " + probleme.getTitre());
 
         if (probleme != null){
-           // probleme.getUser().setId_user(user.getId_user());
-
-            System.out.println("user poster" + user);
-
             Long IdProb = probleme.getId_probleme();
             Long IdUser = probleme.getUser().getId_user();
             Long IdUserPost = user.getId_user();
 
-            System.out.println("Je suis id de Posteur "+IdUserPost);
-            System.out.println("Je suis id de Solution "+IdUser);
-            System.out.println("id probleme " + IdProb);
 
             if (solutionService.trouverParProbleme(probleme) == null){
                 if (IdUserPost != IdUser){
@@ -51,7 +41,7 @@ public class SolutionController {
                 }else {
                     solution.setProbleme(probleme);
                     solutionService.ajouter(solution);
-                    return "Solutionné";
+                    return "Solutionné avec succès";
                 }
             }
             else {
@@ -59,7 +49,7 @@ public class SolutionController {
             }
 
         }else {
-            return "ce probleme n'existe pas";
+            return "Desolé ce probleme n'existe pas";
         }
     }
 
