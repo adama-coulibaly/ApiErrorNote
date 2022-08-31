@@ -12,6 +12,7 @@ import com.syadama.APIErrorNote.Service.CommentaireService;
 import com.syadama.APIErrorNote.Service.ProblemeService;
 import com.syadama.APIErrorNote.Service.SolutionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -63,7 +64,7 @@ public class CommentaireController {
 
 
         }else {
-            return "Solution intouvable";
+            return "Probleme intouvable";
         }
 
 
@@ -85,4 +86,4 @@ public class CommentaireController {
         return commentaireService.lire();
     }
 
-}
+   }

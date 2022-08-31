@@ -50,6 +50,12 @@ public class SolutionController {
                     return "Ce probleme n'est pas a vous !";
                 }else {
                     solution.setProbleme(probleme);
+                    Etat etat = new Etat();
+
+                    etat.setId_etat(2L);
+
+                    solution.getProbleme().setEtat(etat);
+
                     solutionService.ajouter(solution);
                     return "Solutionné";
                 }

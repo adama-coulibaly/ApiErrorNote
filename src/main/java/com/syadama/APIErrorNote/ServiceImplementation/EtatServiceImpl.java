@@ -22,7 +22,7 @@ public class EtatServiceImpl implements EtatService {
         return etatRepository.findById(id_etat)
                 .map(etat1 -> {
                     etat1.setStatus(etat.getStatus());
-                    return etatRepository.save(etat);
+                    return etatRepository.save(etat1);
                 }).orElseThrow(() -> new RuntimeException("Status non trouvé"));
     }
 
