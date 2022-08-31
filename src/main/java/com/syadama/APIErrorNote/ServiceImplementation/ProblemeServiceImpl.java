@@ -54,7 +54,7 @@ public class ProblemeServiceImpl implements ProblemeService {
                     probleme1.setDescription(probleme.getDescription());
                     probleme1.setTitre(probleme.getTitre());
                     probleme1.setTechno_concerne(probleme.getTechno_concerne());
-                    return problemeRepository.save(probleme);
+                    return problemeRepository.save(probleme1);
                 }).orElseThrow(() -> new RuntimeException("Problème non trouvé"));
     }
 

@@ -1,6 +1,7 @@
 package com.syadama.APIErrorNote.ServiceImplementation;
 
 import com.syadama.APIErrorNote.Model.Commentaire;
+import com.syadama.APIErrorNote.Model.Etat;
 import com.syadama.APIErrorNote.Model.Probleme;
 import com.syadama.APIErrorNote.Model.Solution;
 import com.syadama.APIErrorNote.Repository.CommentaireRepository;
@@ -25,7 +26,7 @@ public class SolutionServiceImpl implements SolutionService {
 
     @Override
     public Solution ajouter(Solution solution) {
-              return solutionRepository.save(solution);
+               return solutionRepository.save(solution);
     }
 
     @Override
@@ -35,7 +36,7 @@ public class SolutionServiceImpl implements SolutionService {
                     solution1.setRessource(solution.getRessource());
                     solution1.setMethodologie_adopte(solution.getMethodologie_adopte());
                     solution1.setTemps_consacre(solution.getTemps_consacre());
-                    return solutionRepository.save(solution);
+                    return solutionRepository.save(solution1);
                 }).orElseThrow(() -> new RuntimeException("Solution non trouvé"));
     }
 

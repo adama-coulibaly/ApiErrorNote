@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
                     if (user.getPassword() != null )
                     user1.setPassword(user.getPassword());
 
-                    return userRepository.save(user);
+                    return userRepository.save(user1);
                 }).orElseThrow(() -> new RuntimeException("User non trouvé"));
     }
 
