@@ -8,13 +8,11 @@ import com.syadama.APIErrorNote.Repository.UserRepository;
 import com.syadama.APIErrorNote.Service.ProblemeService;
 import com.syadama.APIErrorNote.Service.SolutionService;
 import com.syadama.APIErrorNote.Service.UserService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@Api
+
 @RestController
 @RequestMapping("/Solution")
 public class SolutionController {
@@ -26,7 +24,6 @@ public class SolutionController {
     @Autowired
     UserRepository userRepository;
 
-    @ApiOperation(value = "Ajouter une solution")
     @PostMapping("/ajouter/{email}/{titre}")
     public String Ajouter(@RequestBody Solution solution,@PathVariable String email, @PathVariable String titre){
 
@@ -66,19 +63,16 @@ public class SolutionController {
         }
     }
 
-    @ApiOperation(value = "Modifier une solution")
     @PutMapping("/modifier/{id_solution}")
     public Solution modifer(@PathVariable Long id_solution,@RequestBody Solution solution){
         return solutionService.modifier(id_solution,solution);
     }
 
-    @ApiOperation(value = "Supprimer une solution")
     @DeleteMapping("/supprimer/{id_solution}")
     public String supprimer(@PathVariable Long id_solution){
         return solutionService.supprimer(id_solution);
     }
 
-    @ApiOperation(value = "Voir une solution")
     @GetMapping("/Voir")
     public List<Solution> voirSolution(){
         return solutionService.lire();

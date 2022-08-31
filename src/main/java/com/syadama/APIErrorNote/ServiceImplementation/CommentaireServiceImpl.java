@@ -1,9 +1,11 @@
 package com.syadama.APIErrorNote.ServiceImplementation;
 
 import com.syadama.APIErrorNote.Model.Commentaire;
+import com.syadama.APIErrorNote.Model.Solution;
 import com.syadama.APIErrorNote.Repository.CommentaireRepository;
 import com.syadama.APIErrorNote.Service.CommentaireService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -11,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class CommentaireServiceImpl implements CommentaireService {
 
+    @Autowired
     private final CommentaireRepository commentaireRepository;
     @Override
     public Commentaire ajouter(Commentaire commentaire) {
@@ -36,4 +39,7 @@ public class CommentaireServiceImpl implements CommentaireService {
     public List<Commentaire> lire() {
         return commentaireRepository.findAll();
     }
+
+
+
 }
