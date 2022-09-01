@@ -3,6 +3,7 @@ package com.syadama.APIErrorNote.Controller;
 
 import com.syadama.APIErrorNote.Model.Etat;
 import com.syadama.APIErrorNote.Model.Probleme;
+import com.syadama.APIErrorNote.Model.Solution;
 import com.syadama.APIErrorNote.Model.User;
 import com.syadama.APIErrorNote.Repository.EtatRepository;
 import com.syadama.APIErrorNote.Repository.UserRepository;
@@ -54,24 +55,35 @@ public class ProblemeController {
 
     }
 
-    @PutMapping("/Modifieir/{email}/{password}/{id_probleme}")
-    public String modifier(@PathVariable String email, @PathVariable String password,@PathVariable Long id_probleme, @RequestBody Probleme probleme){
+    @PutMapping("/modifier/{email}/{password}/{id_probleme}")
+    public String modifer(@PathVariable("email") String email,@PathVariable("password") String password,@PathVariable Long id_probleme,@RequestBody Probleme probleme){
 
         User user = userRepository.findByEmail(email);
+
+
         if (user != null){
             if (passwordEncoder().matches(password,user.getPassword())){
-                problemeService.modifier(id_probleme,probleme);
-                return "Probleme modifier avec succes";
+
+                if (user.getEmail().equals(id_probleme))
+                {
+                    problemeService.modifier(id_probleme,probleme);
+                    return "Solution modifier avec succès";
+                }
+                else {
+                    System.out.println(user.getId_user()+"*********************************");
+                    return "Desolé accès refusé";
+                }
+
+
             }
-            else{
+            else {
                 return "Mot de passe incorrect";
             }
 
         }
-        else{
-            return "Utilisateur non trouvé";
+        else {
+            return "Problem: Utilisateur intouvable";
         }
-
     }
 
     @DeleteMapping("/Supprimer/{id_probleme}")
