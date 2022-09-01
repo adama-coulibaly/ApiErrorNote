@@ -54,9 +54,24 @@ public class ProblemeController {
 
     }
 
-    @PutMapping("/Modifieir/{id_probleme}")
-    public Probleme modifier(@PathVariable Long id_probleme, @RequestBody Probleme probleme){
-        return problemeService.modifier(id_probleme,probleme);
+    @PutMapping("/Modifieir/{email}/{password}/{id_probleme}")
+    public String modifier(@PathVariable String email, @PathVariable String password,@PathVariable Long id_probleme, @RequestBody Probleme probleme){
+
+        User user = userRepository.findByEmail(email);
+        if (user != null){
+            if (passwordEncoder().matches(password,user.getPassword())){
+                problemeService.modifier(id_probleme,probleme);
+                return "Probleme modifier avec succes";
+            }
+            else{
+                return "Mot de passe incorrect";
+            }
+
+        }
+        else{
+            return "Utilisateur non trouvé";
+        }
+
     }
 
     @DeleteMapping("/Supprimer/{id_probleme}")
