@@ -12,7 +12,10 @@ import com.syadama.APIErrorNote.Service.CommentaireService;
 import com.syadama.APIErrorNote.Service.ProblemeService;
 import com.syadama.APIErrorNote.Service.SolutionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +23,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/Commentaire")
 public class CommentaireController {
+
+
+
 
     @Autowired
     private CommentaireService commentaireService;
@@ -31,11 +37,16 @@ public class CommentaireController {
     SolutionRepository solutionRepository;
     @Autowired
     ProblemeService problemeService;
-    @PostMapping("/ajouter/{email}/{titre}")
-    public String Ajouter(@RequestBody Commentaire commentaire, @PathVariable String email,@PathVariable String titre){
 
-        //Creation des  utilisateurs a travers ses emails
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+    @PostMapping("/ajouter/{email}/{password}/{titre}")
+    public String Ajouter(@RequestBody Commentaire commentaire, @PathVariable String email,@PathVariable String password,@PathVariable String titre){
+
+        //verification des  utilisateurs a travers ses emails
         User user = userRepository.findByEmail(email);
+
         //Appel des  problemes a travers leurs titres
         Probleme probleme = problemeService.trouverProblemeParTitre(titre);
 
@@ -49,12 +60,19 @@ public class CommentaireController {
             if (solution != null){
                 //On verifie si l'utilisateur en question existe
                 if (user != null){
-                    commentaire.setSolution(solution);
-                    commentaire.setUser(user);
-                    commentaireService.ajouter(commentaire);
-                    return "Solution commenté avec succès";
+                    if ( passwordEncoder().matches(password,user.getPassword()))
+                    {
+                        commentaire.setSolution(solution);
+                        commentaire.setUser(user);
+                        commentaireService.ajouter(commentaire);
+                        return "Solution commenté avec succès";
+                    }
+                    else {
+                        return "Mot de passe incorrect";
+                    }
+
                 }else{
-                    return "Cet utilisteur n'existe pas veuiller vous enregistre !";
+                   return "Cet utilisteur n'existe pas veuiller vous enregistre !";
                 }
 
             }

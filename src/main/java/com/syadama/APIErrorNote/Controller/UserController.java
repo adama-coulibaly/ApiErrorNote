@@ -1,6 +1,7 @@
 package com.syadama.APIErrorNote.Controller;
 
 
+import com.syadama.APIErrorNote.Model.Probleme;
 import com.syadama.APIErrorNote.Model.Profil;
 import com.syadama.APIErrorNote.Model.Solution;
 import com.syadama.APIErrorNote.Model.User;
@@ -42,9 +43,29 @@ public class UserController {
         return "Utilisateur modifier avec succes";
     }
 
-    @DeleteMapping("/supprimer/{id_user}")
-    public String supprimer(@PathVariable Long id_user){
-        return userService.supprimer(id_user);
+    @DeleteMapping("/supprimer/{email}/{id_user}")
+    public String supprimer(@PathVariable("email") String email, @PathVariable Long id_user){
+
+         User user = userRepository.findByEmail(email);
+         Long IdUserPost = user.getId_user();
+
+            if (IdUserPost == id_user)
+            {
+                userService.supprimer(id_user);
+                return "Vous etes utilisateurs de ce compte et vous l'avez supprimer";
+            }
+            else if(user.getProfil().getLibelle().equals("Admin"))
+            {
+                                  userService.supprimer(id_user);
+                    return "Compte supprimer par l'administrateur avec succès";
+                }
+
+            else
+            {
+                return "Impossible de supprimer un compte d'autrui";
+            }
+
+
     }
 
     @GetMapping("/Voir")
