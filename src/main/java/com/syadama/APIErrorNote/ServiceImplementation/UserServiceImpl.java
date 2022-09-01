@@ -4,6 +4,9 @@ import com.syadama.APIErrorNote.Model.User;
 import com.syadama.APIErrorNote.Repository.UserRepository;
 import com.syadama.APIErrorNote.Service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,13 +16,22 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Override
     public User ajouter(User user) {
+        user.setPassword(passwordEncoder().encode(user.getPassword() ));
+
+
         return userRepository.save(user);
     }
 
     @Override
     public User modifier(Long id_user, User user) {
+
         return userRepository.findById(id_user)
                 .map(user1 -> {
                     if (user.getNom() != null )
@@ -50,25 +62,5 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
-     /*@Override
-    public User getIdUser() {
-        return userRepository.getIdUser();
-    }
-
-
-    @Override
-    public boolean seConnecter(String pseudo, String password) {
-       if(userRepository.findByPseudo(pseudo) != null || userRepository.findByPassword(password)!= null ){
-
-           System.out.println("Connection reussi avec succes");
-           return true;
-
-        }
-       else {
-           System.out.println("Identifiants intouvables");
-           return false;
-       }
-
-     */
 
 }

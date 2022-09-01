@@ -9,6 +9,8 @@ import com.syadama.APIErrorNote.Repository.UserRepository;
 import com.syadama.APIErrorNote.Service.ProblemeService;
 import com.syadama.APIErrorNote.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,15 +28,30 @@ public class ProblemeController {
     @Autowired
     EtatRepository etatRepository;
 
-    @PostMapping("/ajouter/{email}")
-    public String Ajouter(@RequestBody Probleme probleme, @PathVariable("email") String email){
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-                System.out.println(email);
+    @PostMapping("/ajouter/{email}/{password}")
+    public String Ajouter(@RequestBody Probleme probleme, @PathVariable("email") String email, @PathVariable("password") String password){
+
+
                 User user = userRepository.findByEmail(email);
+                if (user != null){
+                    if (passwordEncoder().matches(password,user.getPassword())){
+                        probleme.getUser().setId_user(user.getId_user());
+                        problemeService.ajouter(probleme,email);
+                        return "Ajouter avec succes";
+                    }
+                    else{
+                        return "Mot de passe incorrect";
+                    }
 
-                probleme.getUser().setId_user(user.getId_user());
-                problemeService.ajouter(probleme,email);
-                return "Ajouter avec succes";
+                }
+                else{
+                    return "Utilisateur non trouvé";
+                }
+
     }
 
     @PutMapping("/Modifieir/{id_probleme}")
