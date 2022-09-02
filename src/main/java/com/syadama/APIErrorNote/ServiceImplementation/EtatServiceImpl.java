@@ -31,11 +31,5 @@ public class EtatServiceImpl implements EtatService {
     public List<Etat> lire() {
         return etatRepository.findAll();
     }
-/*
-    @Override
-    public Etat retrouverEtatParStatus(String status) {
-        return etatRepository.findByEtat(status);
-    }
 
- */
 }
