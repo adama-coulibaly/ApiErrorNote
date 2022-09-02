@@ -30,8 +30,11 @@ public class UserController {
             return "Utilisateur existe déja";
         }
         else {
+            Profil profil = new Profil();
+            profil.setId_profil(1L);
+            user.setProfil(profil);
             userService.ajouter(user);
-            return "Utilisateur ajouter avec succes";
+            return "Compte utilisateur ajouter avec succes";
 
         }
 
@@ -56,7 +59,7 @@ public class UserController {
             }
             else if(user.getProfil().getLibelle().equals("Admin"))
             {
-                                  userService.supprimer(id_user);
+                    userService.supprimer(id_user);
                     return "Compte supprimer par l'administrateur avec succès";
                 }
 

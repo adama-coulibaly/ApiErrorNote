@@ -40,7 +40,7 @@ public class ProblemeController {
                 User user = userRepository.findByEmail(email);
                 if (user != null){
                     if (passwordEncoder().matches(password,user.getPassword())){
-                        probleme.getUser().setId_user(user.getId_user());
+                        probleme.setUser(user);
                         problemeService.ajouter(probleme,email);
                         return "Ajouter avec succes";
                     }
@@ -59,13 +59,17 @@ public class ProblemeController {
     public String modifer(@PathVariable("email") String email,@PathVariable("password") String password,@PathVariable Long id_probleme,@RequestBody Probleme probleme){
 
         User user = userRepository.findByEmail(email);
+        Probleme probleme1 = new Probleme();
+        probleme1.getUser().getId_user();
+
 
 
         if (user != null){
             if (passwordEncoder().matches(password,user.getPassword())){
 
-                if (user.getEmail().equals(id_probleme))
+                if (user.getId_user() != null)
                 {
+                    System.out.println(user.getId_user()+"*********************************"+probleme1.getUser().getId_user());
                     problemeService.modifier(id_probleme,probleme);
                     return "Solution modifier avec succès";
                 }
@@ -77,12 +81,12 @@ public class ProblemeController {
 
             }
             else {
-                return "Mot de passe incorrect";
+                return "Erreur: Mot de passe incorrect";
             }
 
         }
         else {
-            return "Problem: Utilisateur intouvable";
+            return "Erreur: Utilisateur intouvable";
         }
     }
 
