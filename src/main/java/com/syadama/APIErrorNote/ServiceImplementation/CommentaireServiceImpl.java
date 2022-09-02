@@ -1,7 +1,6 @@
 package com.syadama.APIErrorNote.ServiceImplementation;
 
 import com.syadama.APIErrorNote.Model.Commentaire;
-import com.syadama.APIErrorNote.Model.Solution;
 import com.syadama.APIErrorNote.Repository.CommentaireRepository;
 import com.syadama.APIErrorNote.Service.CommentaireService;
 import lombok.AllArgsConstructor;

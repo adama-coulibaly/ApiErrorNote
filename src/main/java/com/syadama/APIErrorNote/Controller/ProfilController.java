@@ -1,8 +1,6 @@
 package com.syadama.APIErrorNote.Controller;
 
-
 import com.syadama.APIErrorNote.Model.Profil;
-import com.syadama.APIErrorNote.Model.User;
 import com.syadama.APIErrorNote.Service.ProfilService;
 import com.syadama.APIErrorNote.Service.UserService;
 import io.swagger.annotations.Api;

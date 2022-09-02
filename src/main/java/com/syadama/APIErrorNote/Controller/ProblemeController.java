@@ -1,9 +1,6 @@
 package com.syadama.APIErrorNote.Controller;
 
-
-import com.syadama.APIErrorNote.Model.Etat;
 import com.syadama.APIErrorNote.Model.Probleme;
-import com.syadama.APIErrorNote.Model.Solution;
 import com.syadama.APIErrorNote.Model.User;
 import com.syadama.APIErrorNote.Repository.EtatRepository;
 import com.syadama.APIErrorNote.Repository.UserRepository;
@@ -13,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController

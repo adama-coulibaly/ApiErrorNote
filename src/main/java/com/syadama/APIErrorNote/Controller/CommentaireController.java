@@ -1,6 +1,5 @@
 package com.syadama.APIErrorNote.Controller;
 
-
 import com.syadama.APIErrorNote.Model.Commentaire;
 import com.syadama.APIErrorNote.Model.Probleme;
 import com.syadama.APIErrorNote.Model.Solution;
@@ -10,22 +9,15 @@ import com.syadama.APIErrorNote.Repository.SolutionRepository;
 import com.syadama.APIErrorNote.Repository.UserRepository;
 import com.syadama.APIErrorNote.Service.CommentaireService;
 import com.syadama.APIErrorNote.Service.ProblemeService;
-import com.syadama.APIErrorNote.Service.SolutionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequestMapping("/Commentaire")
 public class CommentaireController {
-
-
-
 
     @Autowired
     private CommentaireService commentaireService;

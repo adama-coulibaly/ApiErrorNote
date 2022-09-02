@@ -4,7 +4,6 @@ import com.syadama.APIErrorNote.Model.*;
 import com.syadama.APIErrorNote.Repository.UserRepository;
 import com.syadama.APIErrorNote.Service.ProblemeService;
 import com.syadama.APIErrorNote.Service.SolutionService;
-import com.syadama.APIErrorNote.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
