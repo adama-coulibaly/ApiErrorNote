@@ -1,8 +1,6 @@
 package com.syadama.APIErrorNote.Service;
 
-import com.syadama.APIErrorNote.Model.Probleme;
 import com.syadama.APIErrorNote.Model.User;
-
 import java.util.List;
 
 public interface UserService {

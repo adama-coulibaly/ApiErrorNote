@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
                     if (user.getEmail() != null )
                     user1.setEmail(user.getEmail());
                     if (user.getPassword() != null )
-                    user1.setPassword(user.getPassword());
+                    user1.setPassword(passwordEncoder().encode(user.getPassword()));
 
                     return userRepository.save(user1);
                 }).orElseThrow(() -> new RuntimeException("User non trouvé"));

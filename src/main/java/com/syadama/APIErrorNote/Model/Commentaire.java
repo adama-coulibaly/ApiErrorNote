@@ -1,15 +1,10 @@
 package com.syadama.APIErrorNote.Model;
 
-import lombok.*;
-
+import lombok.Data;
 import javax.persistence.*;
 
 @Entity
 @Data
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Commentaire {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

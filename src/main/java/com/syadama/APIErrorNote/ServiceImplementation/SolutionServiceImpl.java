@@ -1,17 +1,13 @@
 package com.syadama.APIErrorNote.ServiceImplementation;
 
-import com.syadama.APIErrorNote.Model.Commentaire;
-import com.syadama.APIErrorNote.Model.Etat;
 import com.syadama.APIErrorNote.Model.Probleme;
 import com.syadama.APIErrorNote.Model.Solution;
-import com.syadama.APIErrorNote.Repository.CommentaireRepository;
 import com.syadama.APIErrorNote.Repository.SolutionRepository;
 import com.syadama.APIErrorNote.Service.ProblemeService;
 import com.syadama.APIErrorNote.Service.SolutionService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

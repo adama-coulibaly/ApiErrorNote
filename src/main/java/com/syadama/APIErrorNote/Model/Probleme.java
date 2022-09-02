@@ -1,7 +1,6 @@
 package com.syadama.APIErrorNote.Model;
 
 import lombok.*;
-
 import javax.persistence.*;
 
 @Entity

@@ -1,8 +1,6 @@
 package com.syadama.APIErrorNote.Service;
 
-import com.syadama.APIErrorNote.Model.Commentaire;
 import com.syadama.APIErrorNote.Model.Etat;
-
 import java.util.List;
 
 public interface EtatService {

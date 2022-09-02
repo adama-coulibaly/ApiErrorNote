@@ -1,9 +1,7 @@
 package com.syadama.APIErrorNote.Model;
 
 import lombok.Data;
-
 import javax.persistence.*;
-
 @Entity
 @Data
 public class User {
